@@ -5,13 +5,6 @@ from nltk.corpus import stopwords
 
 LINES = ['-', ':', '--']
 
-def main():
-    stringsByAuthor = dict()
-    stringsByAuthor['doyle'] = textToString('hound.txt')
-    stringsByAuthor['wells'] = textToString('war.txt')
-    stringsByAuthor['unknown'] = textToString('lost.txt')
-
-    print(stringsByAuthor['doyle'][:300])
 
 def textToString(filename):
     """read a text file and return a string"""
@@ -25,6 +18,16 @@ def makeWordDict(stringsByAuthor):
         tokens = nltk.word_tokenize(stringsByAuthor[author])
         wordsByAuthor[author] = ([token.lower() for token in tokens
                                   if token.isalpha()])
+def main():
+    stringsByAuthor = dict()
+    stringsByAuthor['doyle'] = textToString('hound.txt')
+    stringsByAuthor['wells'] = textToString('war.txt')
+    stringsByAuthor['unknown'] = textToString('lost.txt')
+
+    print(stringsByAuthor['doyle'][:300])
+
+    wordsByAuthor = makeWordDict(stringsByAuthor)
+    
     
 if __name__ == "__main__":
     main()
